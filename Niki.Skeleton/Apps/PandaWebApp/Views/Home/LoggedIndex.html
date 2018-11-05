@@ -1,0 +1,83 @@
+﻿<main class="mt-3">
+    <div class="container-fluid text-center">
+        @if (User.Role == "Admin")
+        {
+            <h2>Hello, Administrator @User.Username!</h2>
+        }
+        @else
+        {
+            <h2>Hello, @User.Username!</h2>
+        }
+    </div>
+    <hr class="bg-panda hr-2" />
+    <div class="container-fluid product-holder">
+        <div class="row d-flex justify-content-around">
+            <div class="col-4 text-center">
+                <h3>Pending</h3>
+                @if (Model.Pending.Count() > 0)
+                {
+                    <div class="card border-panda">
+                        @for(int i = 0; i < @Model.Pending.Count(); i++)
+                        {
+                            { var package = @Model.Pending[i]; }
+                            <div class="row card-body">
+                                <div class="col-md-9 text-left">
+                                    <h5 class="card-title">@package.Description</h5>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <div class="button-holder d-flex justify-content-center">
+                                        <a href="/packages/details?id=@package.Id" class="btn bg-panda text-white">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="col-4 text-center">
+                <h3>Shipped</h3>
+                @if (Model.Shipped.Count() > 0)
+                {
+                    <div class="card border-panda">
+                        @for(int i = 0; i < @Model.Shipped.Count(); i++)
+                        {
+                            { var package = @Model.Shipped[i]; }
+                            <div class="row card-body">
+                                <div class="col-md-9 text-left">
+                                    <h5 class="card-title">@package.Description</h5>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <div class="button-holder d-flex justify-content-center">
+                                        <a href="/packages/details?id=@package.Id" class="btn bg-panda text-white">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+            <div class="col-4 text-center">
+                <h3>Delivered</h3>
+                @if(Model.Delivered.Count() > 0)
+                {
+                    <div class="card border-panda">
+                        @for(int i = 0; i < @Model.Delivered.Count(); i++)
+                        {
+                            { var package = @Model.Delivered[i]; }
+                            <div class="row card-body">
+                                <div class="col-md-9 text-left">
+                                    <h5 class="card-title">@package.Description</h5>
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <div class="button-holder d-flex justify-content-center">
+                                        <a href="/packages/acquire?id=@package.Id" class="btn bg-panda text-white">Acquire</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</main>
